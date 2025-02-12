@@ -13,8 +13,17 @@
 *.userosscache
 *.sln.docstates
 
+# Build files
+bin/
+obj/
+.vs/
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+
+# Secrets and configuration
+appsettings.json
+appsettings.Development.json
 
 # Mono auto generated files
 mono_crash.*
