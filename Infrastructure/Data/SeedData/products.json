@@ -1,0 +1,30 @@
+[
+    {
+        "Name":"Angular speedster board 2000",
+        "Description":"lorem ipsum dolor sit amet",
+        "Price":200,
+        "PictureUrl":"/images/products/sb-ang1.png",
+        "Type":"Boards",
+        "Brand":"Angular",
+        "QuantityInStock": 82
+
+    },
+    {
+        "Name":"Green Angular Board 3000",
+        "Description":"lorem ipsum dolor",
+        "Price":150,
+        "PictureUrl":"/images/products/sb-ang2.png",
+        "Type":"Boards",
+        "Brand":"Angular",
+        "QuantityInStock": 75
+    },
+    {
+        "Name":"Green React Gloves",
+        "Description":"Pellentesque habitant morbi tristique",
+        "Price":14,
+        "PictureUrl":"/images/products/glove-react2.png",
+        "Type":"Gloves",
+        "Brand":"React",
+        "QuantityInStock": 45
+    }
+]
