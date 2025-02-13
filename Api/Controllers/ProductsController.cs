@@ -12,9 +12,10 @@ namespace Api.Controllers
     public class ProductsController(IProductRepository repository) : ControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts()
+        public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(string? brand, string? type, string? sort)
         {
-            return Ok(await repository.GetProductsAsync());
+            var products = await repository.GetProductsAsync(brand, type, sort);
+            return Ok(products);
         }
 
         [HttpGet("{id:int}")] // api/products/2
@@ -74,6 +75,20 @@ namespace Api.Controllers
                 return Ok();
 
             return BadRequest("Problem deleting the product");
+        }
+
+        [HttpGet("brands")]
+        public async Task<ActionResult<IReadOnlyList<string>>> GetBrands()
+        {
+            var brands = await repository.GetBrandsAsync();
+            return Ok(brands);
+        }
+
+        [HttpGet("types")]
+        public async Task<ActionResult<IReadOnlyList<string>>> GetTypes()
+        {
+            var types = await repository.GetTypesAsync();
+            return Ok(types);
         }
     }
 }
