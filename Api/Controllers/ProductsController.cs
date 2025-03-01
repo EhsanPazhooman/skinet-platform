@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
+using Core.Specifications;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,12 +10,15 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController(IGenericRepository<Product,int> repository) : ControllerBase
+    public class ProductsController(IGenericRepository<Product> repository) : ControllerBase
     {
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(string? brand, string? type, string? sort)
         {
-            var products = await repository.ListAllAsync();
+            var spec = new ProductSpecification(brand, type, sort);
+
+            var products = await repository.ListAsync(spec); 
+            
             return Ok(products);
         }
 
@@ -80,15 +84,15 @@ namespace Api.Controllers
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<string>>> GetBrands()
         {
-            //var brands = await repository.GetBrandsAsync();
-            return Ok();
+            var spec = new BrandListSpecification(); 
+            return Ok(await repository.ListAsync(spec));
         }
 
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<string>>> GetTypes()
         {
-            //var types = await repository.GetTypesAsync();
-            return Ok();
+            var spec = new TypeListSpecification();
+            return Ok(await repository.ListAsync(spec));
         }
     }
 }
